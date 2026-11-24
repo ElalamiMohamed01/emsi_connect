@@ -33,6 +33,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _submitForm() {
     if (!_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Veuillez corriger les erreurs du formulaire'),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
       return;
     }
 
@@ -49,7 +55,16 @@ class _RegisterPageState extends State<RegisterPage> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Inscription'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Inscription'),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -160,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: _descriptionController,
-                      maxLength: 150,
+                      maxLength: 140,
                       maxLines: 3,
                       decoration: const InputDecoration(
                         labelText: 'Description',

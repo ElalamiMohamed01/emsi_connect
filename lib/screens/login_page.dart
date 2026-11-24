@@ -1,4 +1,5 @@
 import 'package:emsi_connect/screens/home_page.dart';
+import 'package:emsi_connect/screens/register_page.dart';
 import 'package:emsi_connect/utils/validators.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,11 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => const HomePage()),
     );
+  }
+
+  void _navigateToRegister() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const RegisterPage()));
   }
 
   @override
@@ -97,6 +103,14 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: _submitForm,
                       icon: const Icon(Icons.check_circle_outline),
                       label: const Text('Vérifier la saisie'),
+                    ),
+                    const SizedBox(height: 16),
+                    TextButton(
+                      onPressed: _navigateToRegister,
+                      child: const Text(
+                        "Créer un compte",
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
                   ],
                 ),
